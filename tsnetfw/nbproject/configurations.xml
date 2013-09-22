@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="84">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df name="src" root="../src">
+      <df name="demo">
+        <df name="src">
+          <df name="lib64">
+            <in>Attr_API.h</in>
+            <in>bossapi.h</in>
+            <in>oi_shm.h</in>
+            <in>senderrlog.h</in>
+          </df>
+          <in>DemoHashService.cpp</in>
+          <in>DemoHashService.h</in>
+          <in>DemoLaboratory.cpp</in>
+          <in>DemoLaboratory.h</in>
+          <in>DemoMonitorDriver.cpp</in>
+          <in>DemoMonitorDriver.h</in>
+          <in>DemoMultiProcessStarter.cpp</in>
+          <in>DemoProxyService.cpp</in>
+          <in>DemoProxyService.h</in>
+          <in>DemoRecordService.cpp</in>
+          <in>DemoRecordService.h</in>
+          <in>DemoRequestTest.cpp</in>
+          <in>DemoRequestTest.h</in>
+          <in>DemoTimerService.cpp</in>
+          <in>DemoTimerService.h</in>
+          <in>DemoUdpDispenser.cpp</in>
+          <in>DemoUdpDispenser.h</in>
+          <in>tsnetfw_test.cpp</in>
+          <in>tsnetfw_test.h</in>
+        </df>
+      </df>
+      <in>TSBitmap.cpp</in>
+      <in>TSBitmap.h</in>
+      <in>TSBitmap.inl</in>
+      <in>TSConfigure.cpp</in>
+      <in>TSConfigure.h</in>
+      <in>TSConfigure.inl</in>
+      <in>TSDataBase.cpp</in>
+      <in>TSDataBase.h</in>
+      <in>TSDataBase.inl</in>
+      <in>TSDebug.cpp</in>
+      <in>TSDebug.h</in>
+      <in>TSDebug.inl</in>
+      <in>TSEpoll.cpp</in>
+      <in>TSEpoll.h</in>
+      <in>TSEpoll.inl</in>
+      <in>TSEventInterface.cpp</in>
+      <in>TSEventInterface.h</in>
+      <in>TSEventInterface.inl</in>
+      <in>TSFile.cpp</in>
+      <in>TSFile.h</in>
+      <in>TSFile.inl</in>
+      <in>TSHash.cpp</in>
+      <in>TSHash.h</in>
+      <in>TSHash.inl</in>
+      <in>TSIo.cpp</in>
+      <in>TSIo.h</in>
+      <in>TSIo.inl</in>
+      <in>TSLab.cpp</in>
+      <in>TSLab.h</in>
+      <in>TSLab.inl</in>
+      <in>TSList.cpp</in>
+      <in>TSList.h</in>
+      <in>TSList.inl</in>
+      <in>TSMemcached.cpp</in>
+      <in>TSMemcached.h</in>
+      <in>TSMemcached.inl</in>
+      <in>TSMemory.cpp</in>
+      <in>TSMemory.h</in>
+      <in>TSMemory.inl</in>
+      <in>TSNetFw.h</in>
+      <in>TSNetService.cpp</in>
+      <in>TSNetService.h</in>
+      <in>TSNetService.inl</in>
+      <in>TSPlatform.cpp</in>
+      <in>TSPlatform.h</in>
+      <in>TSPlatform.inl</in>
+      <in>TSProcess.cpp</in>
+      <in>TSProcess.h</in>
+      <in>TSProcess.inl</in>
+      <in>TSRuntime.cpp</in>
+      <in>TSRuntime.h</in>
+      <in>TSRuntime.inl</in>
+      <in>TSScriptEngine.cpp</in>
+      <in>TSScriptEngine.h</in>
+      <in>TSScriptEngine.inl</in>
+      <in>TSSession.cpp</in>
+      <in>TSSession.h</in>
+      <in>TSSession.inl</in>
+      <in>TSSocket.cpp</in>
+      <in>TSSocket.h</in>
+      <in>TSSocket.inl</in>
+      <in>TSString.cpp</in>
+      <in>TSString.h</in>
+      <in>TSString.inl</in>
+      <in>TSSynch.cpp</in>
+      <in>TSSynch.h</in>
+      <in>TSSynch.inl</in>
+      <in>TSThread.cpp</in>
+      <in>TSThread.h</in>
+      <in>TSThread.inl</in>
+      <in>TSTimer.cpp</in>
+      <in>TSTimer.h</in>
+      <in>TSTimer.inl</in>
+      <in>TSWorker.cpp</in>
+      <in>TSWorker.h</in>
+      <in>TSWorker.inl</in>
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="重要文件"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>../src/Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
+  <sourceRootList>
+    <Elem>../src</Elem>
+  </sourceRootList>
+  <projectmakefile>../src/Makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
+        <compilerSet>default</compilerSet>
+      </toolsSet>
+      <codeAssistance>
+      </codeAssistance>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>../src</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath>../bin/tsnetfw_test</executablePath>
+        </makeTool>
+      </makefileType>
+      <item path="../src/TSBitmap.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>../src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="../src/TSConfigure.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>../src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="../src/TSDataBase.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>../src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="../src/TSDebug.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>../src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="../src/TSEpoll.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>../src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="../src/TSEventInterface.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>../src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="../src/TSFile.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>T://projects/tsnetfw/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="../src/TSHash.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>T://projects/tsnetfw/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="../src/TSIo.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>T://projects/tsnetfw/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="../src/TSLab.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>T://projects/tsnetfw/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="../src/TSLab.inl" ex="true" tool="3" flavor2="0">
+      </item>
+      <item path="../src/TSList.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>T://projects/tsnetfw/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="../src/TSMemcached.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>T://projects/tsnetfw/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="../src/TSMemory.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>T://projects/tsnetfw/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="../src/TSNetService.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>T://projects/tsnetfw/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="../src/TSPlatform.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>T://projects/tsnetfw/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="../src/TSPlatform.inl" ex="true" tool="3" flavor2="0">
+      </item>
+      <item path="../src/TSProcess.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>T://projects/tsnetfw/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="../src/TSRuntime.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>T://projects/tsnetfw/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="../src/TSScriptEngine.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>T://projects/tsnetfw/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="../src/TSSession.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>T://projects/tsnetfw/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="../src/TSSocket.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>T://projects/tsnetfw/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="../src/TSString.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>T://projects/tsnetfw/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="../src/TSSynch.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>T://projects/tsnetfw/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="../src/TSThread.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>T://projects/tsnetfw/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="../src/TSTimer.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>T://projects/tsnetfw/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="../src/TSWorker.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>T://projects/tsnetfw/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="../src/demo/src/DemoHashService.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+        <ccTool>
+        </ccTool>
+      </item>
+      <item path="../src/demo/src/DemoLaboratory.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+        </ccTool>
+      </item>
+      <item path="../src/demo/src/DemoMonitorDriver.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+        <ccTool>
+        </ccTool>
+      </item>
+      <item path="../src/demo/src/DemoMultiProcessStarter.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+        <ccTool>
+        </ccTool>
+      </item>
+      <item path="../src/demo/src/DemoProxyService.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+        <ccTool>
+        </ccTool>
+      </item>
+      <item path="../src/demo/src/DemoRecordService.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+        <ccTool>
+        </ccTool>
+      </item>
+      <item path="../src/demo/src/DemoRequestTest.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+        <ccTool>
+        </ccTool>
+      </item>
+      <item path="../src/demo/src/DemoTimerService.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+        <ccTool>
+        </ccTool>
+      </item>
+      <item path="../src/demo/src/DemoUdpDispenser.cpp"
+            ex="false"
+            tool="1"
+            flavor2="4">
+        <ccTool>
+        </ccTool>
+      </item>
+      <item path="../src/demo/src/lib64/bossapi.h" ex="true" tool="3" flavor2="0">
+      </item>
+      <item path="../src/demo/src/lib64/senderrlog.h" ex="true" tool="3" flavor2="0">
+      </item>
+      <item path="../src/demo/src/tsnetfw_test.cpp" ex="false" tool="1" flavor2="4">
+        <ccTool>
+          <incDir>
+            <pElem>T://projects/tsnetfw/src/demo/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <folder path="src/demo">
+        <ccTool>
+          <incDir>
+            <pElem>../src</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+    </conf>
+  </confs>
+</configurationDescriptor>

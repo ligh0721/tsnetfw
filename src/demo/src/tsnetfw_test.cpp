@@ -468,20 +468,31 @@ int txt2bin()
     return 0;
 }
 
-class CTestProc : public CProcess
+
+struct MAPPED
+{
+    uint32_t dwCount;
+};
+
+class CTestHash : public CNormalPersistentHash<uint32_t, MAPPED>
 {
 public:
-    CTestProc() : m_iN(0xFF) {}
-    
-protected:
-    virtual int ProcessProc()
-    {
-        printf("<%d>\n", m_iN);
-        return 0;
-    }
+    typedef typename CPersistentHash<uint32_t, MAPPED>::CDataCell CDataCell;
+    typedef typename CPersistentHash<uint32_t, MAPPED>::CHashNode CHashNode;
     
 public:
-    int m_iN;
+    virtual bool OnHandleData(const CDataCell& rData)
+    {
+        CHashNode* pNode = (CHashNode*)FindNodeToSet(rData.tKey, NULL);
+        pNode->tMapped.dwCount = rData.tData.dwCount;
+        return true;
+    }
+    
+    bool ShowAll(CHashNode& rNode, void* pParam)
+    {
+        printf("%u:%u\n", ((CHashNode*)&rNode)->tKey, rNode.tMapped.dwCount);
+        return true;
+    }
 };
 
 int main(int argc, char** argv)
@@ -489,19 +500,27 @@ int main(int argc, char** argv)
     CCommandLine::CreateCommandLine(argc, argv);
     CServiceBase::IgnoreSignals();
     CLog::SetLogLevel(E_LL_DBG);
-    
-    //return EXIT_SUCCESS;
-    //return txt2bin();
 
-    //oSm.Close();
+    CTestHash oHash;
+    oHash.Init(1000, 5, 0, 0x1A000000, "./", ".blg", "./", ".dmp");
+    //oHash.Attach(0x1A000000, false, "./", ".blg", "./", ".dmp");
     
+    CTestHash::CDataCell oData;
+    oData.tKey = 174209756;
+    oData.tData.dwCount = 368;
+    oHash.HandleData(oData);
     
-    CTestProc oP;
-    oP.m_iN = 10000;
+    oData.tKey = 1115629309;
+    oData.tData.dwCount = 54899;
+    oHash.HandleData(oData);
     
-    oP.Start();
-    oP.Wait();
+    oHash.DumpMemory();
     
+    oData.tKey = 11112222;
+    oData.tData.dwCount = 1212;
+    oHash.HandleData(oData);
+    
+    oHash.Traverse((CTestHash::TRAVERSECALLBACKFUNC)&CTestHash::ShowAll, NULL);
     
     return EXIT_SUCCESS;
 }

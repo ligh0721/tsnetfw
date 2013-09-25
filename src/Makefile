@@ -52,7 +52,7 @@ PREFIX = /usr/local
 
 .PHONY: all clean mkdir pack install uninstall
 all: $(BIN)
-	#$(MAKE) all -C $(DEMODIR)
+	$(MAKE) all -C $(DEMODIR)
 	
 clean:
 	-rm -rf $(PROTO) $(OBJ) $(BIN) $(BINDIR)/tsnetfw.tar.bz2

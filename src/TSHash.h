@@ -10,23 +10,16 @@
 
 #include <stdint.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <string>
+using namespace std;
+
+#include "TSUtil.h"
+
 
 uint32_t udc_crc32(unsigned long crc,
                    const unsigned char* buf,
                    int len);
-
-class CDataSequenceInterface
-{
-public:
-    CDataSequenceInterface(uint32_t dwSeq = 0);
-
-    bool IsNewerThan(const CDataSequenceInterface& roObj) const;
-    uint32_t Sequence() const;
-    void Sequence(uint32_t dwSeq);
-
-protected:
-    uint32_t _dwSeq;
-};
 
 typedef struct
 {
@@ -75,7 +68,7 @@ class CHashMap
 {
 public:
     //static const uint32_t HASH_MAX_LINE = 60; // 最大允许hash行数，静态常成员
-    const uint32_t HASH_NODE_SIZE; // 节点尺寸常量
+    //const uint32_t HASH_NODE_SIZE; // 节点尺寸常量
     const KEY HASH_EMPTY_KEY; // 空key常量
 
     struct CHashNode
@@ -137,8 +130,8 @@ public:
     // 用key为m_oHash.HASH_EMPTY_KEY的节点填充共享内存，这样整个hash逻辑上是空的
     bool Clear();
 
-    CHashHeader* GetHeader();
-    void SetHeaderAddress(const void* pHdr);
+    void* GetHeader();
+    void SetHeaderAddress(void* pHdr);
     void CopyHeaderMemory(const void* pHdr);
 
     bool ClearNode(CHashNode& rNode);
@@ -146,10 +139,15 @@ public:
     int GetHashNodeUr() const;
     int GetHashLineUr() const;
     
+    virtual size_t GetHeaderSize() const;
+    virtual size_t GetNodeSize() const;
+    
     struct timeval* GetTimeValueFind();
         
 protected:
     virtual bool AllocAndInitHashMemory(size_t uSize, const CHashHeader& roHdr);
+    
+public:
     virtual bool FreeHeaderMemory();
 
     // 默认键值匹配回调函数
@@ -157,7 +155,7 @@ protected:
 
 protected:
 
-    CHashHeader* m_pHeader;
+    void* m_pHeader;
     struct timeval m_stTv;
 
 };
@@ -200,15 +198,119 @@ public:
     typedef typename CHashMap<KEY, MAPPED, EXTENTION>::CHashHeader CHashHeader;
     
 public:
-    bool Init(uint32_t dwHashWidth, uint32_t dwHashHeight, const KEY& rEmptyKey, key_t dwShmKey);
-    bool Attach(key_t dwShmKey, bool bReadOnly);
+    virtual bool Init(uint32_t dwHashWidth, uint32_t dwHashHeight, const KEY& rEmptyKey, key_t dwShmKey);
+    virtual bool Attach(key_t dwShmKey, bool bReadOnly);
     
 protected:
     virtual bool AllocAndInitHashMemory(size_t uSize, const CHashHeader& roHdr);
+    
+public:
     virtual bool FreeHeaderMemory();
     
     CShareMemory m_oShm;
     key_t m_dwShmKey;
+};
+
+
+class CDataSequenceInterface
+{
+public:
+    CDataSequenceInterface(uint32_t dwSeq = 0);
+
+    uint32_t NextSequence();
+    bool IsNewerThan(const CDataSequenceInterface* poObj) const;
+    uint32_t GetSequence() const;
+    void SetSequence(uint32_t dwSeq);
+
+protected:
+    uint32_t _dwSeq;
+};
+
+
+
+template <typename KEY, typename MAPPED, typename DATA = MAPPED, typename EXTENTION = EMPTY>
+class CPersistentHash : public CShmHash<KEY, MAPPED, EXTENTION>
+{
+private:
+    typedef typename CHashMap<KEY, MAPPED, EXTENTION>::CHashNode CHashNode_;
+    typedef typename CHashMap<KEY, MAPPED, EXTENTION>::CHashHeader CHashHeader_;
+    
+public:
+    typedef CPersistentHash CPersistentHash_;
+    struct CHashNode : public CHashNode_, public CDataSequenceInterface {};
+    struct CHashHeader : public CHashHeader_, public CDataSequenceInterface {};
+        
+    struct CDataCell : public CDataSequenceInterface
+    {
+    public:
+        KEY tKey;
+        DATA tData;
+    };
+        
+    CPersistentHash();
+
+    virtual bool Init(uint32_t dwHashWidth, uint32_t dwHashHeight, const KEY& rEmptyKey, key_t dwShmKey);
+    
+    virtual size_t GetHeaderSize() const;
+    virtual size_t GetNodeSize() const;
+        
+    bool HandleData(CDataCell& rData);
+    
+    bool DumpMemory();
+    
+    virtual bool OnHandleData(const CDataCell& rData);
+    
+    virtual bool OnWriteBinlog(const CDataCell& rData);
+    virtual bool OnLoadBinlog();
+    virtual bool OnDumpMemory();
+    virtual bool OnLoadMemory();
+};
+
+
+#include "TSThread.h"
+
+template <typename KEY, typename MAPPED, typename DATA = MAPPED, typename EXTENTION = EMPTY>
+class CNormalPersistentHash : public CPersistentHash<KEY, MAPPED, DATA, EXTENTION>
+{
+public:
+    typedef CPersistentHash<KEY, MAPPED, DATA, EXTENTION> CPersistentHash_;
+    typedef typename CPersistentHash<KEY, MAPPED, DATA, EXTENTION>::CHashHeader CHashHeader;
+    typedef typename CPersistentHash<KEY, MAPPED, DATA, EXTENTION>::CHashNode CHashNode;
+    typedef typename CPersistentHash<KEY, MAPPED, DATA, EXTENTION>::CDataCell CDataCell;
+    
+    class CDumpThread : public CThread
+    {
+    public:
+        virtual long ThreadProc();
+        
+    public:
+        CNormalPersistentHash* m_pHash;
+    };
+    
+public:
+    CNormalPersistentHash();
+    virtual ~CNormalPersistentHash();
+    
+public:
+    virtual bool Init(uint32_t dwHashWidth, uint32_t dwHashHeight, const KEY& rEmptyKey, key_t dwShmKey, const char* pBinlogPrefix, const char* pBinlogSuffix, const char* pDumpPrefix, const char* pDumpSuffix);
+    virtual bool Attach(key_t dwShmKey, bool bReadOnly, const char* pBinlogPrefix, const char* pBinlogSuffix, const char* pDumpPrefix, const char* pDumpSuffix);
+    bool AsyncDumpMemory();
+    
+protected:
+    virtual bool OnWriteBinlog(const CDataCell& rData);
+    virtual bool OnLoadBinlog();
+    virtual bool OnDumpMemory();
+    virtual bool OnLoadMemory();
+    
+protected:
+    FILE* m_pBinlog;
+    string m_sBinlogPrefix;
+    string m_sBinlogSuffix;
+    string m_sDumpPrefix;
+    string m_sDumpSuffix;
+    uint32_t m_dwDateYYYYMMDD;
+    int m_iDumpOffset;
+    CDumpThread m_oDumpThread;
 };
 
 

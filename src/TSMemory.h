@@ -13,21 +13,6 @@
 #include <sys/shm.h>
 
 
-class CAutoBuffer
-{
-public:
-    CAutoBuffer(size_t uSize);
-    ~CAutoBuffer();
-    operator void*();
-    operator const void*() const;
-    void* GetBuffer(size_t uOffset = 0);
-    size_t GetSize() const;
-    
-protected:
-    void* m_pBuf;
-    size_t m_uSize;
-};
-
 class CBuffer
 {
 public:

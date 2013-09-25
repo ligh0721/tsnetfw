@@ -50,7 +50,8 @@ LDFLAGS += $(LIBS)
 TSNETFW_TEST = $(BINDIR)/tsnetfw_test
 BIN = $(TSNETFW_TEST)
 
-ifneq ($(cygwin), 1)
+#ifneq ($(cygwin), 1)
+ifneq (1, 1)
 DEMO_PROXY = $(BINDIR)/DemoProxyService
 DEMO_RECORD = $(BINDIR)/DemoRecordService
 DEMO_REQUESTTEST = $(BINDIR)/DemoRequestTest

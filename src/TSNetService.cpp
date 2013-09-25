@@ -27,20 +27,6 @@
 
 // CAutoSwitch
 
-CAutoSwitch::CAutoSwitch()
-: m_bIsAvailable(true)
-, m_dwMaxFailedCount(0)
-, m_dwMaxTimeoutCount(0)
-, m_dwFirstDelayUS(0)
-, m_dwDelayIncStepUS(0)
-, m_dwMaxDelayUS(0)
-, m_dwFailedCount(0)
-, m_dwTimeoutCount(0)
-, m_dwDelayUS(0)
-{
-
-}
-
 bool CAutoSwitch::Init(uint32_t dwMaxFailedCount, uint32_t dwMaxTimeoutCount, uint32_t dwFirstDelayMS, uint32_t dwDelayIncStepMS, uint32_t dwMaxDelayMS)
 {
     m_dwMaxFailedCount = dwMaxFailedCount;
@@ -138,13 +124,6 @@ void CAutoSwitch::TellTimeout()
     m_bIsAvailable = false;
 }
 
-void CAutoSwitch::Reset()
-{
-    m_bIsAvailable = true;
-    m_dwFailedCount = 0;
-    m_dwTimeoutCount = 0;
-    m_dwDelayUS = 0;
-}
 
 // CConnectionSocket
 

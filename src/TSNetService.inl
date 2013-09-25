@@ -15,18 +15,39 @@
 #include "TSWorker.h"
 
 
+// CAutoSwitch
+
+inline CAutoSwitch::CAutoSwitch()
+: m_bIsAvailable(true)
+, m_dwMaxFailedCount(0)
+, m_dwMaxTimeoutCount(0)
+, m_dwFirstDelayUS(0)
+, m_dwDelayIncStepUS(0)
+, m_dwMaxDelayUS(0)
+, m_dwFailedCount(0)
+, m_dwTimeoutCount(0)
+, m_dwDelayUS(0)
+{
+}
+
+inline void CAutoSwitch::Reset()
+{
+    m_bIsAvailable = true;
+    m_dwFailedCount = 0;
+    m_dwTimeoutCount = 0;
+    m_dwDelayUS = 0;
+}
+
 
 // CConnectionSocket
 
 inline CConnectionStream::CConnectionStream()
 : m_uLastAccessTime(0)
 {
-
 }
 
 inline CConnectionStream::~CConnectionStream()
 {
-
 }
 
 inline bool CConnectionStream::IsInUse() const

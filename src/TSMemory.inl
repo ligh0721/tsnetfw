@@ -11,41 +11,6 @@
 #include "TSMemory.h"
 
 
-// CAutoBuffer
-inline CAutoBuffer::CAutoBuffer(size_t uSize)
-: m_uSize(uSize)
-{
-    m_pBuf = malloc(uSize);
-}
-
-inline CAutoBuffer::~CAutoBuffer()
-{
-    likely(m_pBuf)
-    {
-        free(m_pBuf);
-    }
-}
-
-inline CAutoBuffer::operator void*()
-{
-    return m_pBuf;
-}
-
-inline CAutoBuffer::operator const void*() const
-{
-    return m_pBuf;
-}
-
-inline void* CAutoBuffer::GetBuffer(size_t uOffset)
-{
-    return (uint8_t*)m_pBuf + uOffset;
-}
-
-inline size_t CAutoBuffer::GetSize() const
-{
-    return m_uSize;
-}
-    
 // CBuffer
 
 inline CBuffer::CBuffer(uint32_t dwSize)

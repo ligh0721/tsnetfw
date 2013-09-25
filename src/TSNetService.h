@@ -8,6 +8,7 @@
 #ifndef __TSNETSERVICE_H__
 #define	__TSNETSERVICE_H__
 
+#include "TSDebug.h"
 
 class CAutoSwitch
 {

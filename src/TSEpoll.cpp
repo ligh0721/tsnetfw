@@ -42,7 +42,7 @@ bool CEpollFramework::Init(uint32_t uMaxRegisterIo)
 bool CEpollFramework::RegisterIo(CIo* pIo, uint32_t dwEvents)
 {
     //ASSERT(pIo);
-    LOG_DBG("MSG | IoContextsMapNode: %lu/%lu, %u/%u", (ulong)m_oIoContextsMap.GetHeader()->uHashNodeUsedCount, (ulong)m_oIoContextsMap.GetHeader()->uHashNodeCount, m_oIoContextsMap.GetHeader()->dwHashCurHeight, m_oIoContextsMap.GetHeader()->dwHashHeight);
+    LOG_DBG("MSG | IoContextsMapNode: %lu/%lu, %u/%u", (ulong)((CIoContextHash::CHashHeader*)m_oIoContextsMap.GetHeader())->uHashNodeUsedCount, (ulong)((CIoContextHash::CHashHeader*)m_oIoContextsMap.GetHeader())->uHashNodeCount, ((CIoContextHash::CHashHeader*)m_oIoContextsMap.GetHeader())->dwHashCurHeight, ((CIoContextHash::CHashHeader*)m_oIoContextsMap.GetHeader())->dwHashHeight);
     bool bNew;
     CIoContextHash::CHashNode* pNode = m_oIoContextsMap.FindNodeToSet(pIo->GetHandle(), &bNew);
 
